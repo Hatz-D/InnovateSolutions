@@ -4,7 +4,7 @@
 <ins>Integrantes:</ins>
 - Diego Aluizio de Oliveira
 - Diogo Lourenzon Hatz
-- Nicolas Melnik Fernandes
+- Nicolas Fernandes Melnik
 
 <h2>Organização</h2>
 
