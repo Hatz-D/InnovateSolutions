@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String args[]) {
-        String opcao = "";
+    public static void main(String[] args) {
+        String opcao;
         int opcaoInt = -1;
         Scanner scanner = new Scanner(System.in);
         String menu = "\n************** Home **************\n\n1. Nova Solicitação de Serviço\n2. Perfil de Usuário\n3. Encerrar\n\nSelecione uma opção: ";

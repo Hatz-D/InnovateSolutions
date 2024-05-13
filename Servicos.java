@@ -2,12 +2,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class Servicos {
-    private static List<TipoServico> listaServicos;
-
-    public Servicos() {
-        listaServicos = new LinkedList<>();
-        populaServicos();
-    }
+    private static List<TipoServico> listaServicos = new LinkedList<>();
 
     public static List<TipoServico> getListaServicos() {return listaServicos;}
 

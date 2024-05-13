@@ -2,11 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Prestadores {
-    private static List<Prestador> listaPrestadores;
-
-    public Prestadores() {
-        listaPrestadores = new LinkedList<>();
-    }
+    private static List<Prestador> listaPrestadores = new LinkedList<>();
 
     public static List<Prestador> getListaPrestadores() {return listaPrestadores;}
 
