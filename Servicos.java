@@ -2,18 +2,22 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class Servicos {
-    private List<TipoServico> listaServicos;
+    private static List<TipoServico> listaServicos;
 
     public Servicos() {
         listaServicos = new LinkedList<>();
         populaServicos();
     }
 
-    public void addServico(TipoServico tipoServico) {listaServicos.add(tipoServico);}
+    public static List<TipoServico> getListaServicos() {return listaServicos;}
 
-    public void removeServico(TipoServico tipoServico) {listaServicos.remove(tipoServico);}
+    public static void setListaServicos(List<TipoServico> listaServicos) {Servicos.listaServicos = listaServicos;}
 
-    public TipoServico buscaServico(String classe, String subclasse, String tipo) {
+    public static void addServico(TipoServico tipoServico) {listaServicos.add(tipoServico);}
+
+    public static void removeServico(TipoServico tipoServico) {listaServicos.remove(tipoServico);}
+
+    public static TipoServico buscaServico(String classe, String subclasse, String tipo) {
         for(int i = 0; i < listaServicos.size(); ++i) {
             if(listaServicos.get(i).getClasse().equals(classe) && listaServicos.get(i).getSubclasse().equals(subclasse) && listaServicos.get(i).getTipo().equals(tipo)) {
                 return listaServicos.get(i);
@@ -22,9 +26,9 @@ public class Servicos {
         return null;
     }
 
-    public TipoServico getRandomServico() {return listaServicos.get((int) (Math.random() * 10000) % listaServicos.size());}
+    public static TipoServico getRandomServico() {return listaServicos.get((int) (Math.random() * 10000) % listaServicos.size());}
 
-    public void populaServicos() {
+    public static void populaServicos() {
         TipoServico servico0 = new TipoServico("Assistência Técnica","Aparelhos Eletrônicos","Aparelho de som");
         TipoServico servico1 = new TipoServico("Assistência Técnica","Aparelhos Eletrônicos","Aquecedor a gás");
         TipoServico servico2 = new TipoServico("Assistência Técnica","Aparelhos Eletrônicos","Ar condicionado");

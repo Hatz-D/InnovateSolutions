@@ -2,17 +2,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Prestadores {
-    private List<Prestador> listaPrestadores;
+    private static List<Prestador> listaPrestadores;
 
     public Prestadores() {
         listaPrestadores = new LinkedList<>();
     }
 
-    public void addPrestador(Prestador prestador) {listaPrestadores.add(prestador);}
+    public static List<Prestador> getListaPrestadores() {return listaPrestadores;}
 
-    public void removePrestador(Prestador prestador) {listaPrestadores.remove(prestador);}
+    public static void setListaPrestadores(List<Prestador> listaPrestadores) {Prestadores.listaPrestadores = listaPrestadores;}
 
-    public List<Prestador> encontraPrestador(TipoServico servico) {
+    public static void addPrestador(Prestador prestador) {listaPrestadores.add(prestador);}
+
+    public static void removePrestador(Prestador prestador) {listaPrestadores.remove(prestador);}
+
+    public static List<Prestador> encontraPrestador(TipoServico servico) {
         List<Prestador> prestadores = new LinkedList<>();
         for(int i = 0; i < listaPrestadores.size(); ++i) {
             for(int j = 0; j < listaPrestadores.get(i).getListaServicos().size(); ++j) {
@@ -23,19 +27,14 @@ public class Prestadores {
         return prestadores;
     }
 
-    public void populaFila(int n, Servicos listaServicos) {
+    public static void populaFila(int n) {
         for(int i = 0; i < n; ++i) {
-            StringBuilder nome = new StringBuilder();
-            nome.append("Prestador ").append(i);
+            String nome = "Prestador " + i;
             double nota = Math.random() * 100000 % 5;
             double orcamento = Math.random() * 1000;
-            StringBuilder descricao = new StringBuilder();
-            descricao.append("Descrição do prestador ").append(i);
-            StringBuilder contaBanaria = new StringBuilder();
-            contaBanaria.append("Conta bancária do prestador ").append(i);
-            Prestador prest = new Prestador(nome.toString(), nota, descricao.toString(), contaBanaria.toString());
+            Prestador prest = new Prestador(nome, nota, "Descrição do prestador " + i, "Conta bancária do prestador " + i);
 
-            TipoServico servico = listaServicos.getRandomServico();
+            TipoServico servico = Servicos.getRandomServico();
             prest.addServico(servico, orcamento);
             servico.addPrestador(prest);
             listaPrestadores.add(prest);

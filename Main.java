@@ -7,10 +7,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String menu = "\n************** Home **************\n\n1. Nova Solicitação de Serviço\n2. Perfil de Usuário\n3. Encerrar\n\nSelecione uma opção: ";
 
-        Servicos listaServicos = new Servicos();
-        listaServicos.populaServicos();
-        Prestadores listaPrestadores = new Prestadores();
-        listaPrestadores.populaFila(100, listaServicos);
+        Servicos.populaServicos();
+        Prestadores.populaFila(100);
 
         Cliente cliente = new Cliente("Eduardo San");
         cliente.addPagamento("Pix");
@@ -30,7 +28,7 @@ public class Main {
             }
 
             switch(opcaoInt) {
-                case 1 -> Solicitacao.classeProblema(cliente, listaPrestadores, listaServicos);
+                case 1 -> Solicitacao.classeProblema(cliente);
 
                 case 2 -> Perfil.menuPerfil(cliente);
 
