@@ -1,23 +1,17 @@
 public class Servico {
-    private String classe;
-    private String subclasse;
+    private TipoServico tiposervico;
     private double orcamento;
     private String aparelho;
 
-    public Servico(String classe, String subclasse, String aparelho, double orcamento) {
-        this.classe = classe;
-        this.subclasse = subclasse;
+    public Servico(TipoServico tiposervico, String aparelho, double orcamento) {
+        this.tiposervico = tiposervico;
         this.aparelho = aparelho;
         this.orcamento = orcamento;
     }
 
-    public String getClasse() {return classe;}
+    public TipoServico getTiposervico() {return tiposervico;}
 
-    public void setClasse(String classe) {this.classe = classe;}
-
-    public String getSubclasse() {return subclasse;}
-
-    public void setSubclasse(String subclasse) {this.subclasse = subclasse;}
+    public void setTiposervico(TipoServico tiposervico) {this.tiposervico = tiposervico;}
 
     public double getOrcamento() {return orcamento;}
 
@@ -29,8 +23,6 @@ public class Servico {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(classe).append(" - ").append(subclasse).append(" - ").append(aparelho);
-        return sb.toString();
+        return tiposervico.toString() + " - " + aparelho;
     }
 }

@@ -4,27 +4,25 @@ import java.time.format.DateTimeFormatter;
 public class Pedido {
     private Prestador prestador;
     private Cliente cliente;
-    private double orcamento;
     private String prazo;
     private double avaliacao;
     private String comentario;
     private String status;
     private String descricao;
-    private TipoServico servico;
+    private Servico servico;
     private String adicionalProblema;
     private String adicionalMarca;
     private String data;
     private String endereco;
     private String pagamento;
 
-    public Pedido(Prestador prestador, Cliente cliente, double orcamento, String prazo, String descricao, TipoServico servico, String endereco) {
-        this(prestador, cliente, orcamento, prazo, descricao, servico, endereco, "", "");
+    public Pedido(Prestador prestador, Cliente cliente, String prazo, String descricao, Servico servico, String endereco) {
+        this(prestador, cliente, prazo, descricao, servico, endereco, "", "");
     }
 
-    public Pedido(Prestador prestador, Cliente cliente, double orcamento, String prazo, String descricao, TipoServico servico, String endereco, String adicionalProblema, String adicionalMarca) {
+    public Pedido(Prestador prestador, Cliente cliente, String prazo, String descricao, Servico servico, String endereco, String adicionalProblema, String adicionalMarca) {
         this.prestador = prestador;
         this.cliente = cliente;
-        this.orcamento = orcamento;
         this.prazo = prazo;
         this.descricao = descricao;
         this.servico = servico;
@@ -48,10 +46,6 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {this.cliente = cliente;}
 
-    public double getOrcamento() {return orcamento;}
-
-    public void setOrcamento(float orcamento) {this.orcamento = orcamento;}
-
     public String getPrazo() {return prazo;}
 
     public void setPrazo(String prazo) {this.prazo = prazo;}
@@ -64,9 +58,9 @@ public class Pedido {
 
     public void setDescricao(String descricao) {this.descricao = descricao;}
 
-    public TipoServico getServico() {return servico;}
+    public Servico getServico() {return servico;}
 
-    public void setServico(TipoServico servico) {this.servico = servico;}
+    public void setServico(Servico servico) {this.servico = servico;}
 
     public String getAdicionalProblema() {return adicionalProblema;}
 

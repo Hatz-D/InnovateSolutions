@@ -6,7 +6,7 @@ public class Prestador {
     private double nota;
     private String descricao;
     private String contaBancaria;
-    private List<ServicoOrcamento> listaServicos;
+    private List<Servico> listaServicos;
     private List<Pedido> listaPedidos;
 
     public Prestador(String nome, double nota, String descricao, String contaBancaria) {
@@ -22,9 +22,9 @@ public class Prestador {
 
     public void setNome(String nome) {this.nome = nome;}
 
-    public List<ServicoOrcamento> getListaServicos() {return listaServicos;}
+    public List<Servico> getListaServicos() {return listaServicos;}
 
-    public void setListaServicos(List<ServicoOrcamento> listaServicos) {this.listaServicos = listaServicos;}
+    public void setListaServicos(List<Servico> listaServicos) {this.listaServicos = listaServicos;}
 
     public double getNota() {return nota;}
 
@@ -44,26 +44,21 @@ public class Prestador {
 
     public void removePedido(Pedido pedido) {listaPedidos.remove(pedido);}
 
-    public void addServico(TipoServico servico, double orcamento) {
-        ServicoOrcamento servicoorcamento = new ServicoOrcamento(servico, orcamento);
-        listaServicos.add(servicoorcamento);
+    public void addServico(TipoServico tiposervico, String aparelho, double orcamento) {
+        Servico servico = new Servico(tiposervico, aparelho, orcamento);
+        listaServicos.add(servico);
     }
 
-    public void removeServico(TipoServico servico) {
+    public void removeServico(Servico servico) {listaServicos.remove(servico);}
+
+    public Servico getServico(TipoServico servico, String aparelho) {
         for(int i = 0; i < listaServicos.size(); ++i) {
-            if(listaServicos.get(i).getServico() == servico) {
-                listaServicos.remove(i);
-                return;
+            if(listaServicos.get(i).getTiposervico() == servico && listaServicos.get(i).getAparelho().equals(aparelho)) {
+                return listaServicos.get(i);
             }
         }
-    }
 
-    public double getOrcamento(TipoServico servico) {
-        for(int i = 0; i < listaServicos.size(); ++i) {
-            if(listaServicos.get(i).getServico() == servico) {return listaServicos.get(i).getOrcamento();}
-        }
-
-        return -1;
+        return null;
     }
 
     @Override

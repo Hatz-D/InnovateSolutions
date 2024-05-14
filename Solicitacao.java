@@ -46,9 +46,9 @@ public class Solicitacao {
 
             switch (opcaoInt) {
 
-                case 1 -> placeholder = aparelhos(cliente, classe, "Aparelhos Eletrônicos");
+                case 1 -> placeholder = aparelhos(cliente, TiposServicos.buscaServico(classe, "Aparelhos Eletrônicos"));
 
-                case 2 -> placeholder = eletrodomesticos(cliente, classe, "Eletrodomésticos");
+                case 2 -> placeholder = eletrodomesticos(cliente, TiposServicos.buscaServico(classe, "Eletrodomésticos"));
 
                 case 3 -> {continue;}
 
@@ -59,7 +59,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean aparelhos(Cliente cliente, String classe, String subclasse) {
+    public static Boolean aparelhos(Cliente cliente, TipoServico tiposervico) {
         String menu1ba = "\n************** Serviço **************\n\n1. Aparelho de som\n2. Aquecedor a gás\n3. Ar condicionado\n4. Câmera\n5. Home theater\n6. Voltar\n\nSelecione uma opção: ";
         int opcaoInt = -1;
         String opcao;
@@ -77,15 +77,15 @@ public class Solicitacao {
             }
 
             switch (opcaoInt) {
-                case 1 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Aparelho de som"));
+                case 1 -> placeholder = problemas(cliente, tiposervico, "Aparelho de som");
 
-                case 2 -> placeholder = problemas(cliente,Servicos.buscaServico(classe, subclasse, "Aquecedor a gás"));
+                case 2 -> placeholder = problemas(cliente, tiposervico, "Aquecedor a gás");
 
-                case 3 -> placeholder = problemas(cliente,Servicos.buscaServico(classe, subclasse, "Ar condicionado"));
+                case 3 -> placeholder = problemas(cliente, tiposervico,"Ar condicionado");
 
-                case 4 -> placeholder = problemas(cliente,Servicos.buscaServico(classe, subclasse, "Câmera"));
+                case 4 -> placeholder = problemas(cliente, tiposervico, "Câmera");
 
-                case 5 -> placeholder = problemas(cliente,Servicos.buscaServico(classe, subclasse, "Home theater"));
+                case 5 -> placeholder = problemas(cliente, tiposervico, "Home theater");
 
                 case 6 -> {continue;}
 
@@ -95,7 +95,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean eletrodomesticos(Cliente cliente, String classe, String subclasse) {
+    public static Boolean eletrodomesticos(Cliente cliente, TipoServico tiposervico) {
         String menu1bb = "\n************** Serviço **************\n\n1. Adega climatizada\n2. Fogão e cooktop\n3. Geladeira e freezer\n4. Lava louça\n5. Máquina de costura\n6. Voltar\n\nSelecione uma opção: ";
         int opcaoInt = -1;
         String opcao;
@@ -113,15 +113,15 @@ public class Solicitacao {
             }
 
             switch (opcaoInt) {
-                case 1 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Adega climatizada"));
+                case 1 -> placeholder = problemas(cliente, tiposervico, "Adega climatizada");
 
-                case 2 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Fogão e cooktop"));
+                case 2 -> placeholder = problemas(cliente, tiposervico, "Fogão e cooktop");
 
-                case 3 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Geladeira e freezer"));
+                case 3 -> placeholder = problemas(cliente, tiposervico, "Geladeira e freezer");
 
-                case 4 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Lava louça"));
+                case 4 -> placeholder = problemas(cliente, tiposervico, "Lava louça");
 
-                case 5 -> placeholder = problemas(cliente, Servicos.buscaServico(classe, subclasse, "Máquina de costura"));
+                case 5 -> placeholder = problemas(cliente, tiposervico, "Máquina de costura");
 
                 case 6 -> {continue;}
 
@@ -131,7 +131,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean problemas(Cliente cliente, TipoServico servico) {
+    public static Boolean problemas(Cliente cliente, TipoServico servico, String aparelho) {
         String menuproblema = "\n************** Detalhamento do Problema **************\n\n1. Botão quebrado\n2. Aquece demais\n3. Não liga\n4. Reposição de peças\n5. Limpeza/manutenção\n6. Voltar\n\nSelecione uma opção: ";
         int opcaoInt = -1;
         String opcao;
@@ -149,15 +149,15 @@ public class Solicitacao {
             }
 
             switch (opcaoInt) {
-                case 1 -> placeholder = marca(cliente, servico, "Botão quebrado");
+                case 1 -> placeholder = marca(cliente, servico, aparelho, "Botão quebrado");
 
-                case 2 -> placeholder = marca(cliente, servico, "Aquece demais");
+                case 2 -> placeholder = marca(cliente, servico, aparelho, "Aquece demais");
 
-                case 3 -> placeholder = marca(cliente, servico, "Não liga");
+                case 3 -> placeholder = marca(cliente, servico, aparelho, "Não liga");
 
-                case 4 -> placeholder = marca(cliente, servico, "Reposição de peças");
+                case 4 -> placeholder = marca(cliente, servico, aparelho, "Reposição de peças");
 
-                case 5 -> placeholder = marca(cliente, servico, "Limpeza/manutenção");
+                case 5 -> placeholder = marca(cliente, servico, aparelho, "Limpeza/manutenção");
 
                 case 6 -> {continue;}
 
@@ -167,7 +167,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean marca(Cliente cliente, TipoServico servico, String problema) {
+    public static Boolean marca(Cliente cliente, TipoServico servico, String aparelho, String problema) {
         String menumarca = "\n************** Marca do Produto **************\n\n1. Electrolux\n2. LG\n3. Brastemp\n4. Samsung\n5. Voltar\n\nSelecione uma opção: ";
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
@@ -183,13 +183,13 @@ public class Solicitacao {
             catch(Exception e) {opcaoInt = -1;}
 
             switch(opcaoInt) {
-                case 1 -> placeholder = prazo(cliente, servico, problema, "Electrolux");
+                case 1 -> placeholder = prazo(cliente, servico, aparelho, problema, "Electrolux");
 
-                case 2 -> placeholder = prazo(cliente, servico, problema, "LG");
+                case 2 -> placeholder = prazo(cliente, servico, aparelho, problema, "LG");
 
-                case 3 -> placeholder = prazo(cliente, servico, problema, "Brastemp");
+                case 3 -> placeholder = prazo(cliente, servico, aparelho, problema, "Brastemp");
 
-                case 4 -> placeholder = prazo(cliente, servico, problema, "Samsung");
+                case 4 -> placeholder = prazo(cliente, servico, aparelho, problema, "Samsung");
 
                 case 5 -> {continue;}
 
@@ -200,7 +200,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean prazo(Cliente cliente, TipoServico servico, String problema, String marca) {
+    public static Boolean prazo(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca) {
         String menuprazo = "\n************** Prazo do Serviço **************\n\n1. O mais cedo possível\n2. Uma semana\n3. Duas semanas\n4. Um mês\n5. Voltar\n\nSelecione uma opção: ";
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
@@ -216,13 +216,13 @@ public class Solicitacao {
             catch(Exception e) {opcaoInt = -1;}
 
             switch(opcaoInt) {
-                case 1 -> placeholder = descricao(cliente, servico, problema, marca, "O mais cedo possível");
+                case 1 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "O mais cedo possível");
 
-                case 2 -> placeholder = descricao(cliente, servico, problema, marca, "Uma semana");
+                case 2 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Uma semana");
 
-                case 3 -> placeholder = descricao(cliente, servico, problema, marca, "Duas semanas");
+                case 3 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Duas semanas");
 
-                case 4 -> placeholder = descricao(cliente, servico, problema, marca, "Um mês");
+                case 4 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Um mês");
 
                 case 5 -> {continue;}
 
@@ -233,7 +233,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean descricao(Cliente cliente, TipoServico servico, String problema, String marca, String prazo) {
+    public static Boolean descricao(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo) {
         String menudescricao = "\n************** Descrição do Serviço **************\n\n1. Insira uma descrição\n2. Voltar\n\nSelecione uma opção: ";
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
@@ -252,7 +252,7 @@ public class Solicitacao {
                     String descricao;
                     System.out.print("Insira a descrição do serviço: ");
                     descricao = scanner.nextLine();
-                    placeholder = endereco(cliente, servico, problema, marca, prazo, descricao);
+                    placeholder = endereco(cliente, servico, aparelho, problema, marca, prazo, descricao);
                 }
 
                 case 2 -> {continue;}
@@ -264,7 +264,7 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean endereco(Cliente cliente, TipoServico servico, String problema, String marca, String prazo, String descricao) {
+    public static Boolean endereco(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao) {
         String menu = "\n************** Endereço do Serviço **************\n";
         String endereco;
         Scanner scanner = new Scanner(System.in);
@@ -272,9 +272,24 @@ public class Solicitacao {
         String opcao;
         Boolean placeholder = true;
 
-        if(cliente.getListaEnderecos().isEmpty()) {
-            System.out.println("\nNão há nenhuma opção de endereço cadastrada, por favor cadastre uma opção!");
-            return false;
+        while(cliente.getListaEnderecos().isEmpty()) {
+            System.out.print("\n************** Endereços **************\n\\nNão há nenhuma opção de endereço cadastrada, por favor cadastre uma opção!\n\n1. Cadastrar\n2. Voltar\n\nSelecione uma opção: ");
+            opcao = scanner.nextLine().strip();
+
+            try {opcaoInt = Integer.parseInt(opcao);}
+            catch(Exception e) {opcaoInt = -1;}
+
+            switch(opcaoInt) {
+                case 1 -> {
+                    Perfil.endereco(cliente);
+                }
+
+                case 2 -> {
+                    return false;
+                }
+
+                default -> System.out.print("\nDigite uma opção válida!\n");
+            }
         }
 
         while(opcaoInt != cliente.getListaEnderecos().size()+1 && placeholder) {
@@ -298,14 +313,14 @@ public class Solicitacao {
                 System.out.print("\nDigite uma opção válida!\n");
             }
 
-            if(!endereco.isEmpty()) {placeholder = buscaPrestador(cliente, servico, problema, marca, prazo, descricao, endereco);}
+            if(!endereco.isEmpty()) {placeholder = buscaPrestador(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco);}
         }
 
         return placeholder;
     }
 
-    public static Boolean buscaPrestador(Cliente cliente, TipoServico servico, String problema, String marca, String prazo, String descricao, String endereco) {
-        List<Prestador> lista = Prestadores.encontraPrestador(servico);
+    public static Boolean buscaPrestador(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco) {
+        List<Prestador> lista = Prestadores.encontraPrestador(servico, aparelho);
         Prestador prestador;
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
@@ -316,7 +331,7 @@ public class Solicitacao {
             System.out.println("\n************** Prestadores Disponíveis **************\n");
             for (int i = 1; i <= lista.size(); ++i) {
                 System.out.print(i + ". ");
-                System.out.println(lista.get(i-1) + " - Orçamento: R$" + String.format("%.2f", (lista.get(i-1).getOrcamento(servico))));
+                System.out.println(lista.get(i-1) + " - Orçamento: R$" + String.format("%.2f", (lista.get(i-1).getServico(servico, aparelho).getOrcamento())));
             }
 
             prestador = null;
@@ -333,13 +348,13 @@ public class Solicitacao {
                 System.out.print("\nDigite uma opção válida!\n");
             }
 
-            if(prestador != null) {placeholder = confirmacao(cliente, servico, problema, marca, prazo, descricao, endereco, prestador);}
+            if(prestador != null) {placeholder = confirmacao(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco, prestador);}
         }
 
         return placeholder;
     }
 
-    public static Boolean confirmacao(Cliente cliente, TipoServico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
+    public static Boolean confirmacao(Cliente cliente, TipoServico tiposervico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
@@ -347,7 +362,7 @@ public class Solicitacao {
 
         while(opcaoInt != 2 && placeholder) {
             System.out.println("\n************** Confirmação **************\n\nVocê deseja confirmar a solicitação do seguinte serviço? :\n");
-            System.out.println(servico + "\nProblema: " + problema + "\nMarca: " + marca + "\nPrazo: " + prazo + "\nPrestador: " + prestador + "\nEndereço: " + endereco + "\nOrçamento: R$" + String.format("%.2f", prestador.getOrcamento(servico)) + "\n");
+            System.out.println(tiposervico + "\nProblema: " + problema + "\nMarca: " + marca + "\nPrazo: " + prazo + "\nPrestador: " + prestador + "\nEndereço: " + endereco + "\nOrçamento: R$" + String.format("%.2f", prestador.getServico(tiposervico, aparelho).getOrcamento()) + "\n");
             System.out.print("1. Sim\n2. Não\n\nSelecione uma opção: ");
             opcao = scanner.nextLine().strip();
 
@@ -355,7 +370,7 @@ public class Solicitacao {
             catch(Exception e) {opcaoInt = -1;}
 
             switch(opcaoInt) {
-                case 1 -> placeholder = criaSolicitacao(cliente, servico, problema, marca, prazo, descricao, endereco, prestador);
+                case 1 -> placeholder = criaSolicitacao(cliente, prestador.getServico(tiposervico, aparelho), problema, marca, prazo, descricao, endereco, prestador);
 
                 case 2 -> {continue;}
             }
@@ -364,8 +379,8 @@ public class Solicitacao {
         return placeholder;
     }
 
-    public static Boolean criaSolicitacao(Cliente cliente, TipoServico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
-        Pedido pedido = new Pedido(prestador, cliente, prestador.getOrcamento(servico), prazo, descricao, servico, endereco, problema, marca);
+    public static Boolean criaSolicitacao(Cliente cliente, Servico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
+        Pedido pedido = new Pedido(prestador, cliente, prazo, descricao, servico, endereco, problema, marca);
         prestador.addPedido(pedido);
         cliente.addPedido(pedido);
 

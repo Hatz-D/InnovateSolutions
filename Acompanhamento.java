@@ -12,11 +12,11 @@ public class Acompanhamento {
         String opcoes2 = "\n1. Avaliar Serviço\n2. Voltar\n";
         String opcoes3 = "\n1. Voltar\n";
 
-        sb.append(menu).append("Tipo de Serviço: ").append(pedido.getServico().getClasse()).append(" - ").append(pedido.getServico().getSubclasse());
-        sb.append("\nProduto: ").append(pedido.getServico().getTipo()).append(" - Marca: ").append(pedido.getAdicionalMarca());
+        sb.append(menu).append("Tipo de Serviço: ").append(pedido.getServico().getTiposervico().getClasse()).append(" - ").append(pedido.getServico().getTiposervico().getSubclasse());
+        sb.append("\nProduto: ").append(pedido.getServico().getAparelho()).append(" - Marca: ").append(pedido.getAdicionalMarca());
         sb.append("\nProblema: ").append(pedido.getAdicionalProblema()).append("\nDescrição do Serviço: ").append(pedido.getDescricao());
         sb.append("\nData de Solicitação: ").append(pedido.getData()).append("\nPrazo para a Realização: ").append(pedido.getPrazo());
-        sb.append("\nPrestador do Serviço: ").append(pedido.getPrestador().getNome()).append("\nEndereço: ").append(pedido.getEndereco()).append("\nOrçamento do Serviço: R$").append(String.format("%.2f", pedido.getOrcamento()));
+        sb.append("\nPrestador do Serviço: ").append(pedido.getPrestador().getNome()).append("\nEndereço: ").append(pedido.getEndereco()).append("\nOrçamento do Serviço: R$").append(String.format("%.2f", pedido.getServico().getOrcamento()));
 
         while(opcaoInt != 3) {
             System.out.println(sb);
