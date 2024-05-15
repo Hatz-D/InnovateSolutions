@@ -1,4 +1,12 @@
+import java.util.List;
+
 public class SolicitacaoCtrl {
+    public static void inicializaListas() {
+        if(Aparelhos.getAparelhos().isEmpty()) {Aparelhos.populaLista();}
+        if(TiposServicos.getListaServicos().isEmpty()) {TiposServicos.populaServicos();}
+        if(Prestadores.getListaPrestadores().isEmpty()) {Prestadores.populaFila(100);}
+    }
+
     public static boolean classeProblema(Cliente cliente, int opcaoInt) {
         boolean placeholder = true;
         switch(opcaoInt) {
@@ -121,38 +129,71 @@ public class SolicitacaoCtrl {
         return placeholder;
     }
 
-    public static Boolean descricao(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, int opcaoInt) {
+    public static boolean descricao(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao) {
         boolean placeholder = true;
+        placeholder = Solicitacao.endereco(cliente, servico, aparelho, problema, marca, prazo, descricao);
+        return placeholder;
+    }
+
+    public static Boolean endereco(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco, int opcaoInt) {
+        boolean placeholder = true;
+        if(cliente.getListaEnderecos().isEmpty()) {
+            switch(opcaoInt) {
+                case 1 -> {Perfil.endereco(cliente);}
+
+                case 2 -> {return false;}
+
+                default -> System.out.print("\nDigite uma opção válida!\n");
+            }
+        }
+
+        else {
+            if(opcaoInt != cliente.getListaEnderecos().size()+1) {endereco = cliente.getListaEnderecos().get(opcaoInt-1);}
+            if(!endereco.isEmpty()) {placeholder = Solicitacao.buscaPrestador(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco);}
+        }
 
         return placeholder;
     }
 
-    public static Boolean endereco(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, int opcaoInt) {
+    public static Boolean buscaPrestador(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco, int opcaoInt, List<Prestador> lista) {
         boolean placeholder = true;
-
-        return placeholder;
-    }
-
-    public static Boolean buscaPrestador(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco, int opcaoInt) {
-        boolean placeholder = true;
-
+        Prestador prestador = null;
+        if(opcaoInt != lista.size()+1) {prestador = lista.get(opcaoInt-1);}
+        if(prestador != null) {placeholder = Solicitacao.confirmacao(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco, prestador);}
         return placeholder;
     }
 
     public static Boolean confirmacao(Cliente cliente, TipoServico tiposervico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador, int opcaoInt) {
         boolean placeholder = true;
+        switch(opcaoInt) {
+            case 1 -> placeholder = criaSolicitacao(cliente, prestador.getServico(tiposervico, aparelho), problema, marca, prazo, descricao, endereco, prestador);
+
+            case 2 -> {}
+        }
 
         return placeholder;
     }
 
-    public static Boolean criaSolicitacao(Cliente cliente, Servico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador, int opcaoInt) {
-        boolean placeholder = true;
+    public static Boolean criaSolicitacao(Cliente cliente, Servico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
+        Pedido pedido = new Pedido(prestador, cliente, prazo, descricao, servico, endereco, problema, marca);
+        prestador.addPedido(pedido);
+        cliente.addPedido(pedido);
 
-        return placeholder;
+        return false;
     }
 
-    public static void pagamento(Pedido pedido, int opcaoInt) {
+    public static void pagamento(Pedido pedido, int opcaoInt, int opcaoInt2) {
+        Cliente cliente = pedido.getCliente();
+        switch(opcaoInt2) {
+            case 1 -> {
+                pedido.setStatus("Aberto");
+                pedido.setPagamento(cliente.getListaPagamentos().get(opcaoInt-1));
+            }
 
+            case 2 -> {}
+
+            default -> System.out.print("\nDigite uma opção válida!\n");
+        }
     }
 
 

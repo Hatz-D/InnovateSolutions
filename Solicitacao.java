@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Solicitacao {
     public static void classeProblema(Cliente cliente) {
+        SolicitacaoCtrl.inicializaListas();
         String menu1a = "\n************** Tipo de Serviço **************\n\n1. Assistência Técnica\n2. Voltar\n\nSelecione uma opção: ";
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
@@ -171,7 +172,7 @@ public class Solicitacao {
                     String descricao;
                     System.out.print("Insira a descrição do serviço: ");
                     descricao = scanner.nextLine();
-                    placeholder = endereco(cliente, servico, aparelho, problema, marca, prazo, descricao);
+                    placeholder = SolicitacaoCtrl.descricao(cliente, servico, aparelho, problema, marca, prazo, descricao);
                 }
 
                 case 2 -> {continue;}
@@ -191,24 +192,14 @@ public class Solicitacao {
         String opcao;
         boolean placeholder = true;
 
-        while(cliente.getListaEnderecos().isEmpty()) {
-            System.out.print("\n************** Endereços **************\n\\nNão há nenhuma opção de endereço cadastrada, por favor cadastre uma opção!\n\n1. Cadastrar\n2. Voltar\n\nSelecione uma opção: ");
+        while(cliente.getListaEnderecos().isEmpty() && placeholder) {
+            System.out.print("\n************** Endereços **************\n\nNão há nenhuma opção de endereço cadastrada, por favor cadastre uma opção!\n\n1. Cadastrar\n2. Voltar\n\nSelecione uma opção: ");
             opcao = scanner.nextLine().strip();
 
             try {opcaoInt = Integer.parseInt(opcao);}
             catch(Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> {
-                    Perfil.endereco(cliente);
-                }
-
-                case 2 -> {
-                    return false;
-                }
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.endereco(cliente, servico, aparelho, problema, marca, prazo, descricao, "", opcaoInt);
         }
 
         while(opcaoInt != cliente.getListaEnderecos().size()+1 && placeholder) {
@@ -225,14 +216,12 @@ public class Solicitacao {
 
             try {
                 opcaoInt = Integer.parseInt(opcao);
-                if(opcaoInt != cliente.getListaEnderecos().size()+1) {endereco = cliente.getListaEnderecos().get(opcaoInt-1);}
+                placeholder = SolicitacaoCtrl.endereco(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco, opcaoInt);
             }
 
             catch (Exception e) {
                 System.out.print("\nDigite uma opção válida!\n");
             }
-
-            if(!endereco.isEmpty()) {placeholder = buscaPrestador(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco);}
         }
 
         return placeholder;
@@ -260,14 +249,12 @@ public class Solicitacao {
 
             try {
                 opcaoInt = Integer.parseInt(opcao);
-                if(opcaoInt != lista.size()+1) {prestador = lista.get(opcaoInt-1);}
+                placeholder = SolicitacaoCtrl.buscaPrestador(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco, opcaoInt, lista);
             }
 
             catch (Exception e) {
                 System.out.print("\nDigite uma opção válida!\n");
             }
-
-            if(prestador != null) {placeholder = confirmacao(cliente, servico, aparelho, problema, marca, prazo, descricao, endereco, prestador);}
         }
 
         return placeholder;
@@ -288,22 +275,10 @@ public class Solicitacao {
             try {opcaoInt = Integer.parseInt(opcao);}
             catch(Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> placeholder = criaSolicitacao(cliente, prestador.getServico(tiposervico, aparelho), problema, marca, prazo, descricao, endereco, prestador);
-
-                case 2 -> {continue;}
-            }
+            placeholder = SolicitacaoCtrl.confirmacao(cliente, tiposervico, aparelho, problema, marca, prazo, descricao, endereco, prestador, opcaoInt);
         }
 
         return placeholder;
-    }
-
-    public static Boolean criaSolicitacao(Cliente cliente, Servico servico, String problema, String marca, String prazo, String descricao, String endereco, Prestador prestador) {
-        Pedido pedido = new Pedido(prestador, cliente, prazo, descricao, servico, endereco, problema, marca);
-        prestador.addPedido(pedido);
-        cliente.addPedido(pedido);
-
-        return false;
     }
 
     public static void pagamento(Pedido pedido) {
@@ -348,17 +323,10 @@ public class Solicitacao {
                     try {opcaoInt2 = Integer.parseInt(opcao);}
                     catch (Exception e) {opcaoInt2 = -1;}
 
-                    switch(opcaoInt2) {
-                        case 1 -> {
-                            pedido.setStatus("Aberto");
-                            pedido.setPagamento(cliente.getListaPagamentos().get(opcaoInt-1));
-                            opcaoInt = cliente.getListaPagamentos().size()+1;
-                            opcaoInt2 = 2;
-                        }
-
-                        case 2 -> {continue;}
-
-                        default -> System.out.print("\nDigite uma opção válida!\n");
+                    SolicitacaoCtrl.pagamento(pedido, opcaoInt, opcaoInt2);
+                    if(opcaoInt2 == 1) {
+                        opcaoInt = cliente.getListaPagamentos().size()+1;
+                        opcaoInt2 = 2;
                     }
                 }
             }

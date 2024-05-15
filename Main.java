@@ -7,13 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String menu = "\n************** Home **************\n\n1. Nova Solicitação de Serviço\n2. Perfil de Usuário\n3. Encerrar\n\nSelecione uma opção: ";
 
-        Aparelhos.populaLista();
-        TiposServicos.populaServicos();
-        Prestadores.populaFila(100);
-
-        System.out.println(TiposServicos.getListaServicos());
-
-        Cliente cliente = new Cliente("Eduardo San");
+        Cliente cliente = new Cliente("Eduardo");
         cliente.addPagamento("Pix");
         cliente.addPagamento("Cartão Mastercard XXXX");
         cliente.addEndereco("Higienópolis XXX");
