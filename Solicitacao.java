@@ -7,7 +7,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 2 && placeholder) {
             System.out.print(menu1a);
@@ -17,13 +17,7 @@ public class Solicitacao {
 
             catch(Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> placeholder = subClasse(cliente, "Assistência Técnica");
-
-                case 2 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.classeProblema(cliente, opcaoInt);
         }
     }
 
@@ -32,7 +26,7 @@ public class Solicitacao {
         int opcaoInt = -1;
         Scanner scanner = new Scanner(System.in);
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 3 && placeholder) {
             System.out.print(menu1b);
@@ -44,16 +38,7 @@ public class Solicitacao {
                 opcaoInt = -1;
             }
 
-            switch (opcaoInt) {
-
-                case 1 -> placeholder = aparelhos(cliente, TiposServicos.buscaServico(classe, "Aparelhos Eletrônicos"));
-
-                case 2 -> placeholder = eletrodomesticos(cliente, TiposServicos.buscaServico(classe, "Eletrodomésticos"));
-
-                case 3 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.subClasse(cliente, classe, opcaoInt);
         }
 
         return placeholder;
@@ -64,7 +49,7 @@ public class Solicitacao {
         int opcaoInt = -1;
         String opcao;
         Scanner scanner = new Scanner(System.in);
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 6 && placeholder) {
             System.out.print(menu1ba);
@@ -76,21 +61,7 @@ public class Solicitacao {
                 opcaoInt = -1;
             }
 
-            switch (opcaoInt) {
-                case 1 -> placeholder = problemas(cliente, tiposervico, "Aparelho de som");
-
-                case 2 -> placeholder = problemas(cliente, tiposervico, "Aquecedor a gás");
-
-                case 3 -> placeholder = problemas(cliente, tiposervico,"Ar condicionado");
-
-                case 4 -> placeholder = problemas(cliente, tiposervico, "Câmera");
-
-                case 5 -> placeholder = problemas(cliente, tiposervico, "Home theater");
-
-                case 6 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.aparelhos(cliente, tiposervico, opcaoInt);
         }
         return placeholder;
     }
@@ -100,7 +71,7 @@ public class Solicitacao {
         int opcaoInt = -1;
         String opcao;
         Scanner scanner = new Scanner(System.in);
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 6 && placeholder) {
             System.out.print(menu1bb);
@@ -112,21 +83,7 @@ public class Solicitacao {
                 opcaoInt = -1;
             }
 
-            switch (opcaoInt) {
-                case 1 -> placeholder = problemas(cliente, tiposervico, "Adega climatizada");
-
-                case 2 -> placeholder = problemas(cliente, tiposervico, "Fogão e cooktop");
-
-                case 3 -> placeholder = problemas(cliente, tiposervico, "Geladeira e freezer");
-
-                case 4 -> placeholder = problemas(cliente, tiposervico, "Lava louça");
-
-                case 5 -> placeholder = problemas(cliente, tiposervico, "Máquina de costura");
-
-                case 6 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.eletrodomesticos(cliente, tiposervico, opcaoInt);
         }
         return placeholder;
     }
@@ -136,7 +93,7 @@ public class Solicitacao {
         int opcaoInt = -1;
         String opcao;
         Scanner scanner = new Scanner(System.in);
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 6 && placeholder) {
             System.out.print(menuproblema);
@@ -148,21 +105,7 @@ public class Solicitacao {
                 opcaoInt = -1;
             }
 
-            switch (opcaoInt) {
-                case 1 -> placeholder = marca(cliente, servico, aparelho, "Botão quebrado");
-
-                case 2 -> placeholder = marca(cliente, servico, aparelho, "Aquece demais");
-
-                case 3 -> placeholder = marca(cliente, servico, aparelho, "Não liga");
-
-                case 4 -> placeholder = marca(cliente, servico, aparelho, "Reposição de peças");
-
-                case 5 -> placeholder = marca(cliente, servico, aparelho, "Limpeza/manutenção");
-
-                case 6 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.problemas(cliente, servico, aparelho, opcaoInt);
         }
         return placeholder;
     }
@@ -172,7 +115,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 5 && placeholder) {
             System.out.print(menumarca);
@@ -182,19 +125,7 @@ public class Solicitacao {
 
             catch(Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> placeholder = prazo(cliente, servico, aparelho, problema, "Electrolux");
-
-                case 2 -> placeholder = prazo(cliente, servico, aparelho, problema, "LG");
-
-                case 3 -> placeholder = prazo(cliente, servico, aparelho, problema, "Brastemp");
-
-                case 4 -> placeholder = prazo(cliente, servico, aparelho, problema, "Samsung");
-
-                case 5 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.marca(cliente, servico, aparelho, problema, opcaoInt);
         }
 
         return placeholder;
@@ -205,7 +136,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 5 && placeholder) {
             System.out.print(menuprazo);
@@ -215,19 +146,7 @@ public class Solicitacao {
 
             catch(Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "O mais cedo possível");
-
-                case 2 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Uma semana");
-
-                case 3 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Duas semanas");
-
-                case 4 -> placeholder = descricao(cliente, servico, aparelho, problema, marca, "Um mês");
-
-                case 5 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            placeholder = SolicitacaoCtrl.prazo(cliente, servico, aparelho, problema, marca, opcaoInt);
         }
 
         return placeholder;
@@ -238,7 +157,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != 2 && placeholder) {
             System.out.print(menudescricao);
@@ -270,7 +189,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(cliente.getListaEnderecos().isEmpty()) {
             System.out.print("\n************** Endereços **************\n\\nNão há nenhuma opção de endereço cadastrada, por favor cadastre uma opção!\n\n1. Cadastrar\n2. Voltar\n\nSelecione uma opção: ");
@@ -325,7 +244,7 @@ public class Solicitacao {
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
-        Boolean placeholder = true;
+        boolean placeholder = true;
 
         while(opcaoInt != lista.size()+1 && placeholder) {
             System.out.println("\n************** Prestadores Disponíveis **************\n");
