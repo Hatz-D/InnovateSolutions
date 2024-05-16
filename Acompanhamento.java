@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Acompanhamento {
     public static void acompanhamento(Pedido pedido) {
-        String opcao ;
+        String opcao;
         int opcaoInt = -1;
         Scanner scanner = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();

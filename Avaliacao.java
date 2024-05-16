@@ -5,7 +5,7 @@ public class Avaliacao {
         String menu = "\n************** Avaliação do Serviço **************\n\nPor favor, insira uma nota de 0 a 10 para o serviço prestado:\n\n1. Avaliar\n2. Voltar\n";
         String opcao;
         int opcaoInt = -1;
-        double avaliacao = -1;
+        double avaliacao;
         Scanner scanner = new Scanner(System.in);
 
         while(opcaoInt != 2) {

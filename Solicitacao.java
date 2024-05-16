@@ -229,7 +229,6 @@ public class Solicitacao {
 
     public static Boolean buscaPrestador(Cliente cliente, TipoServico servico, String aparelho, String problema, String marca, String prazo, String descricao, String endereco) {
         List<Prestador> lista = Prestadores.encontraPrestador(servico, aparelho);
-        Prestador prestador;
         Scanner scanner = new Scanner(System.in);
         int opcaoInt = -1;
         String opcao;
@@ -242,7 +241,6 @@ public class Solicitacao {
                 System.out.println(lista.get(i-1) + " - Orçamento: R$" + String.format("%.2f", (lista.get(i-1).getServico(servico, aparelho).getOrcamento())));
             }
 
-            prestador = null;
             System.out.println(lista.size()+1 + ". Voltar");
             System.out.print("\nSelecione uma opção: ");
             opcao = scanner.nextLine();
@@ -268,7 +266,7 @@ public class Solicitacao {
 
         while(opcaoInt != 2 && placeholder) {
             System.out.println("\n************** Confirmação **************\n\nVocê deseja confirmar a solicitação do seguinte serviço? :\n");
-            System.out.println(tiposervico + "\nProblema: " + problema + "\nMarca: " + marca + "\nPrazo: " + prazo + "\nPrestador: " + prestador + "\nEndereço: " + endereco + "\nOrçamento: R$" + String.format("%.2f", prestador.getServico(tiposervico, aparelho).getOrcamento()) + "\n");
+            System.out.println(tiposervico + " - " + aparelho + "\nProblema: " + problema + "\nMarca: " + marca + "\nPrazo: " + prazo + "\nPrestador: " + prestador + "\nEndereço: " + endereco + "\nDescrição: " + descricao + "\nOrçamento: R$" + String.format("%.2f", prestador.getServico(tiposervico, aparelho).getOrcamento()) + "\n");
             System.out.print("1. Sim\n2. Não\n\nSelecione uma opção: ");
             opcao = scanner.nextLine().strip();
 

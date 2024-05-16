@@ -19,17 +19,7 @@ public class Perfil {
                 opcaoInt = -1;
             }
 
-            switch (opcaoInt) {
-                case 1 -> Pedidos.listaPedidos(cliente);
-
-                case 2 -> pagamento(cliente);
-
-                case 3 -> endereco(cliente);
-
-                case 4 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            PerfilCtrl.menuPerfil(cliente, opcaoInt);
         }
     }
 
@@ -43,9 +33,7 @@ public class Perfil {
         while (opcaoInt != 3) {
             System.out.println(menu);
             for (int i = 1; i <= cliente.getListaPagamentos().size(); ++i) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("- ");
-                System.out.print(sb);
+                System.out.print("- ");
                 System.out.println(cliente.getListaPagamentos().get(i - 1));
             }
 
@@ -61,16 +49,16 @@ public class Perfil {
                 case 1 -> {
                     System.out.print("Insira a nova opção de pagamento: ");
                     pagamento = scanner.nextLine().strip();
-                    cliente.addPagamento(pagamento);
+                    PerfilCtrl.pagamento(cliente, opcaoInt, pagamento);
                 }
 
                 case 2 -> {
                     System.out.print("Insira a opção de pagamento a ser deletada: ");
                     pagamento = scanner.nextLine().strip();
-                    cliente.removePagamento(pagamento);
+                    PerfilCtrl.pagamento(cliente, opcaoInt, pagamento);
                 }
 
-                case 3 -> {continue;}
+                case 3 -> {}
 
                 default -> System.out.print("\nDigite uma opção válida!\n");
             }
@@ -87,9 +75,7 @@ public class Perfil {
         while (opcaoInt != 3) {
             System.out.println(menu);
             for (int i = 1; i <= cliente.getListaEnderecos().size(); ++i) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("- ");
-                System.out.print(sb);
+                System.out.print("- ");
                 System.out.println(cliente.getListaEnderecos().get(i - 1));
             }
 
@@ -105,16 +91,16 @@ public class Perfil {
                 case 1 -> {
                     System.out.print("Insira o novo endereço: ");
                     endereco = scanner.nextLine().strip();
-                    cliente.addEndereco(endereco);
+                    PerfilCtrl.endereco(cliente, opcaoInt, endereco);
                 }
 
                 case 2 -> {
                     System.out.print("Insira o endereço a ser deletado: ");
                     endereco = scanner.nextLine().strip();
-                    cliente.removeEndereco(endereco);
+                    PerfilCtrl.endereco(cliente, opcaoInt, endereco);
                 }
 
-                case 3 -> {continue;}
+                case 3 -> {}
 
                 default -> System.out.print("\nDigite uma opção válida!\n");
             }
