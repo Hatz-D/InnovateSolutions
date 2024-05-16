@@ -14,22 +14,13 @@ public class Cancelamento {
             try {opcaoInt = Integer.parseInt(opcao);}
             catch (Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> {
-                    System.out.println("Serviço cancelado com sucesso!");
-                    pedido.setStatus("Cancelado");
-                    opcaoInt = 2;
-                    taxaCancelamento(pedido);
-                }
-
-                case 2 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            opcaoInt = CancelamentoCtrl.cancelar(pedido, opcaoInt);
         }
     }
 
     public static void taxaCancelamento(Pedido pedido) {
         // Função que irá cobrar uma taxa de cancelamento do cliente
+        // Sim, ela não tem nenhum código pois ela foge do escopo dos casos de uso
+        CancelamentoCtrl.taxaCancelamento(pedido);
     }
 }
