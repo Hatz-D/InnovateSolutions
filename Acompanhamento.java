@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Acompanhamento {
     public static void acompanhamento(Pedido pedido) {
-        String opcao = "";
+        String opcao ;
         int opcaoInt = -1;
         Scanner scanner = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
@@ -35,30 +35,7 @@ public class Acompanhamento {
             try {opcaoInt = Integer.parseInt(opcao);}
             catch (Exception e) {opcaoInt = -1;}
 
-            switch (opcaoInt) {
-                case 1 -> {
-                    if(pedido.getStatus().equals("Pagamento")) {Solicitacao.pagamento(pedido);}
-                    else if(pedido.getStatus().equals("Aberto")) {finalizarPedido(pedido);}
-                    else if(pedido.getStatus().equals("Finalizado") && pedido.getAvaliacao() == -1) {Avaliacao.avaliar(pedido);}
-                    else {opcaoInt = 3;}
-                }
-
-                case 2 -> {
-                    if(pedido.getStatus().equals("Aberto") || pedido.getStatus().equals("Pagamento")) {Cancelamento.cancelar(pedido);}
-                    else if(pedido.getStatus().equals("Finalizado") && pedido.getAvaliacao() == -1) {opcaoInt = 3;}
-                    else{System.out.print("\nDigite uma opção válida!\n");}
-                }
-
-                case 3 -> {
-                    if(pedido.getStatus().equals("Aberto") || pedido.getStatus().equals("Pagamento")) {continue;}
-                    else{
-                        System.out.print("\nDigite uma opção válida!\n");
-                        opcaoInt = -1;
-                    }
-                }
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            opcaoInt = AcompanhamentoCtrl.acompanhamento(pedido, opcaoInt);
         }
     }
 
@@ -75,17 +52,7 @@ public class Acompanhamento {
             try {opcaoInt = Integer.parseInt(opcao);}
             catch (Exception e) {opcaoInt = -1;}
 
-            switch(opcaoInt) {
-                case 1 -> {
-                    System.out.println("Serviço finalizado com sucesso! Por favor, avalie o serviço prestado!");
-                    pedido.setStatus("Finalizado");
-                    opcaoInt = 2;
-                }
-
-                case 2 -> {continue;}
-
-                default -> System.out.print("\nDigite uma opção válida!\n");
-            }
+            opcaoInt = AcompanhamentoCtrl.finalizarPedido(pedido, opcaoInt);
         }
     }
 }
