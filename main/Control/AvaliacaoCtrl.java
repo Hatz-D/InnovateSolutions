@@ -1,3 +1,8 @@
+package Control;
+
+import Entity.*;
+import Boundary.*;
+
 public class AvaliacaoCtrl {
     public static int avaliar(Pedido pedido, double avaliacao) {
         if (avaliacao <= 10 && avaliacao >= 0) {

@@ -1,3 +1,5 @@
+package Entity;
+
 public class Servico {
     private TipoServico tiposervico;
     private double orcamento;

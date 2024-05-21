@@ -1,10 +1,18 @@
+package Control;
+
+import Entity.*;
+import Boundary.*;
+
 import java.util.List;
 
 public class SolicitacaoCtrl {
     public static void inicializaListas() {
-        if(Aparelhos.getAparelhos().isEmpty()) {Aparelhos.populaLista();}
-        if(TiposServicos.getListaServicos().isEmpty()) {TiposServicos.populaServicos();}
-        if(Prestadores.getListaPrestadores().isEmpty()) {Prestadores.populaFila(100);}
+        if(Aparelhos.getAparelhos().isEmpty()) {
+            Aparelhos.populaLista();}
+        if(TiposServicos.getListaServicos().isEmpty()) {
+            TiposServicos.populaServicos();}
+        if(Prestadores.getListaPrestadores().isEmpty()) {
+            Prestadores.populaFila(100);}
     }
 
     public static boolean classeProblema(Cliente cliente, int opcaoInt) {
@@ -139,7 +147,8 @@ public class SolicitacaoCtrl {
         boolean placeholder = true;
         if(cliente.getListaEnderecos().isEmpty()) {
             switch(opcaoInt) {
-                case 1 -> {Perfil.endereco(cliente);}
+                case 1 -> {
+                    Perfil.endereco(cliente);}
 
                 case 2 -> {return false;}
 

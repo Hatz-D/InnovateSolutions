@@ -1,15 +1,24 @@
+package Control;
+
+import Entity.*;
+import Boundary.*;
+
 public class AcompanhamentoCtrl {
     public static int acompanhamento(Pedido pedido, int opcaoInt) {
         switch (opcaoInt) {
             case 1 -> {
-                if(pedido.getStatus().equals("Pagamento")) {Solicitacao.pagamento(pedido);}
-                else if(pedido.getStatus().equals("Aberto")) {Acompanhamento.finalizarPedido(pedido);}
-                else if(pedido.getStatus().equals("Finalizado") && pedido.getAvaliacao() == -1) {Avaliacao.avaliar(pedido);}
+                if(pedido.getStatus().equals("Pagamento")) {
+                    Solicitacao.pagamento(pedido);}
+                else if(pedido.getStatus().equals("Aberto")) {
+                    Acompanhamento.finalizarPedido(pedido);}
+                else if(pedido.getStatus().equals("Finalizado") && pedido.getAvaliacao() == -1) {
+                    Avaliacao.avaliar(pedido);}
                 else {return 3;}
             }
 
             case 2 -> {
-                if(pedido.getStatus().equals("Aberto") || pedido.getStatus().equals("Pagamento")) {Cancelamento.cancelar(pedido);}
+                if(pedido.getStatus().equals("Aberto") || pedido.getStatus().equals("Pagamento")) {
+                    Cancelamento.cancelar(pedido);}
                 else if(pedido.getStatus().equals("Finalizado") && pedido.getAvaliacao() == -1) {return 3;}
                 else{System.out.print("\nDigite uma opção válida!\n");}
             }

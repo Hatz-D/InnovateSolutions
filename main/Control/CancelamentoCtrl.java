@@ -1,3 +1,7 @@
+package Control;
+
+import Entity.*;
+
 public class CancelamentoCtrl {
     public static int cancelar(Pedido pedido, int opcaoInt) {
         switch(opcaoInt) {

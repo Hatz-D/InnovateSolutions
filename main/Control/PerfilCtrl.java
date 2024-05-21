@@ -1,3 +1,8 @@
+package Control;
+
+import Entity.*;
+import Boundary.*;
+
 public class PerfilCtrl {
     public static void menuPerfil(Cliente cliente, int opcaoInt) {
         switch (opcaoInt) {
