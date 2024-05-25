@@ -31,10 +31,33 @@
     </build>
 
     <dependencies>
+        <!-- JUnit 5 (Jupiter) dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- System Rules for handling System.in and System.out in tests -->
+        <dependency>
+            <groupId>com.github.stefanbirkner</groupId>
+            <artifactId>system-rules</artifactId>
+            <version>1.19.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mockito for mocking -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>3.9.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
