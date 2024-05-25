@@ -1,4 +1,4 @@
-# InnovateSolutions
+# InnovateSolutions ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hatz-D/InnovateSolutions/.github%2Fworkflows%2Fmaven.yml)
 <h4>Repositório destinado à disciplina de Engenharia de Software do curso de Ciência da Computação da Universidade Mackenzie</h4>
 
 <ins>Integrantes:</ins>
