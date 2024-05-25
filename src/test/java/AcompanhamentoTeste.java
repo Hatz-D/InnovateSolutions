@@ -1,15 +1,9 @@
-package com.InnovateSolutions.Boundary;
-
 import Boundary.*;
+import Entity.*;
+import Control.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-import Control.AcompanhamentoCtrl;
-import Entity.Pedido;
-import Entity.Servico;
-import Entity.TipoServico;
-import Entity.Prestador;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
@@ -37,10 +31,9 @@ public class AcompanhamentoTeste {
     void setUp() {
         TipoServico tipoServico = new TipoServico("ClasseTeste", "SubclasseTeste");
         Servico servico = new Servico(tipoServico, "AparelhoTeste", 100.00);
-        Prestador prestador = new Prestador("PrestadorTeste", "EnderecoTeste");
-
-        pedido = new Pedido(servico, "ProblemaTeste", "DescricaoTeste", "DataTeste", "PrazoTeste", prestador,
-                "AdicionalMarcaTeste", "AdicionalProblemaTeste", "EnderecoTeste");
+        Prestador prestador = new Prestador("PrestadorTeste", 9.5, "DescricaoTeste", "ContaTeste");
+        Cliente cliente = new Cliente ("ClienteTeste");
+        pedido = new Pedido(prestador, cliente, "2 meses", "DescricaoTeste", servico, "EnderecoTeste");
 
         acompanhamentoCtrlMockedStatic = mockStatic(AcompanhamentoCtrl.class);
     }
