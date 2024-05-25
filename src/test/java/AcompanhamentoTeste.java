@@ -1,5 +1,7 @@
 package com.InnovateSolutions.Boundary;
 
+import Boundary.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -20,8 +22,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class AcompanhamentoTest {
-    
+public class AcompanhamentoTeste {
+
     @Rule
     public final TextFromStandardInputStream systemInMock = TextFromStandardInputStream.emptyStandardInputStream();
 
@@ -36,20 +38,21 @@ public class AcompanhamentoTest {
         TipoServico tipoServico = new TipoServico("ClasseTeste", "SubclasseTeste");
         Servico servico = new Servico(tipoServico, "AparelhoTeste", 100.00);
         Prestador prestador = new Prestador("PrestadorTeste", "EnderecoTeste");
-        
-        pedido = new Pedido(servico, "ProblemaTeste", "DescricaoTeste", "DataTeste", "PrazoTeste", prestador, "AdicionalMarcaTeste", "AdicionalProblemaTeste", "EnderecoTeste");
+
+        pedido = new Pedido(servico, "ProblemaTeste", "DescricaoTeste", "DataTeste", "PrazoTeste", prestador,
+                "AdicionalMarcaTeste", "AdicionalProblemaTeste", "EnderecoTeste");
 
         acompanhamentoCtrlMockedStatic = mockStatic(AcompanhamentoCtrl.class);
     }
 
     @Test
     public void testAcompanhamento() {
-        systemInMock.provideLines("3");  // Simula a entrada do usuário "3" para sair do loop.
+        systemInMock.provideLines("3"); // Simula a entrada do usuário "3" para sair do loop.
 
         Acompanhamento.acompanhamento(pedido);
 
         String output = systemOutRule.getLog();
-        
+
         // Verifique se algumas strings esperadas estão presentes na saída
         assertTrue(output.contains("************** Acompanhamento de Pedido **************"));
         assertTrue(output.contains("Tipo de Serviço: ClasseTeste - SubclasseTeste"));
@@ -65,12 +68,12 @@ public class AcompanhamentoTest {
 
     @Test
     public void testFinalizarPedido() {
-        systemInMock.provideLines("2");  // Simula a entrada do usuário "2" para sair do loop.
+        systemInMock.provideLines("2"); // Simula a entrada do usuário "2" para sair do loop.
 
         Acompanhamento.finalizarPedido(pedido);
 
         String output = systemOutRule.getLog();
-        
+
         // Verifique se algumas strings esperadas estão presentes na saída
         assertTrue(output.contains("************** Finalização do Serviço **************"));
         assertTrue(output.contains("Tem certeza que você deseja finalizar o serviço?"));
