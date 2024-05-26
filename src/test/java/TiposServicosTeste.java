@@ -2,8 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import Entity.TipoServico;
-import Entity.TiposServicos;
+import Entity.*;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -6,15 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.Rule;
 import org.mockito.MockedStatic;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 
 public class AcompanhamentoTeste {
 
@@ -32,7 +28,7 @@ public class AcompanhamentoTeste {
         TipoServico tipoServico = new TipoServico("ClasseTeste", "SubclasseTeste");
         Servico servico = new Servico(tipoServico, "AparelhoTeste", 100.00);
         Prestador prestador = new Prestador("PrestadorTeste", 9.5, "DescricaoTeste", "ContaTeste");
-        Cliente cliente = new Cliente ("ClienteTeste");
+        Cliente cliente = new Cliente("ClienteTeste");
         pedido = new Pedido(prestador, cliente, "2 meses", "DescricaoTeste", servico, "EnderecoTeste");
 
         acompanhamentoCtrlMockedStatic = mockStatic(AcompanhamentoCtrl.class);
