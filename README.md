@@ -2,7 +2,7 @@
 <h4>Repositório destinado à disciplina de Engenharia de Software do curso de Ciência da Computação da Universidade Mackenzie</h4>
 
 <ins>Integrantes:</ins>
-- Diego Aluizio de Oliveira
+- Diego Oliveira Aluizio
 - Diogo Lourenzon Hatz
 - Nicolas Fernandes Melnik
 
