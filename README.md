@@ -8,5 +8,5 @@
 
 <h2>Organização</h2>
 
-A forma que este repositório foi organizado se baseia na utilização do campo Wiki do Github, em que cada página da wiki corresponde a uma entrega da disciplina. O diretório /src do campo de Code deste repositório é destinado à publicação de imagens utilizadas na Wiki.
+A forma que este repositório foi organizado se baseia na utilização do campo Wiki do Github e na estruturação padrão para caminhos do Maven. Cada página da wiki corresponde a uma entrega da disciplina. O diretório /src/Imagens do campo de Code deste repositório é destinado à publicação de imagens utilizadas na Wiki. Em src/main/java se encontra o código fonte, e em src/test se encontram os testes automatizados que são executados pelo Maven.
 
